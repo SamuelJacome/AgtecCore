@@ -47,7 +47,7 @@ FileLocked
             </div>
             {% if perms.core.view_audit and audit %}
                 <div>
-                    <a href="{% url url_detail object.pk %}audit"
+                    <a href="{% url url_detail object|get_key %}audit"
                        class="br-button secondary block">Auditar</a>
                 </div>
             {% endif %}

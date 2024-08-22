@@ -278,7 +278,9 @@ class Base(models.Model):
     def __str__(self):
         return self.updated_on.strftime("%d/%m/%Y %H:%M:%S")
 
-
+class BaseLegado(Base):
+    id = models.AutoField(primary_key=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, null=True, blank=True)
 """
 =========================================================================
 =========================================================================

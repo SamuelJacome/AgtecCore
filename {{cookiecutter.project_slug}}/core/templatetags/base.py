@@ -1,3 +1,4 @@
+import uuid
 from django import template
 from django.utils.safestring import mark_safe
 from usuario.models import Usuario
@@ -133,3 +134,9 @@ def url_replace(context, **kwargs):
     query.update(kwargs)
 
     return mark_safe(query.urlencode())
+
+@register.filter
+def get_key(item):
+    if isinstance(item.pk, uuid.UUID):
+        return item.pk
+    return item.uuid.urn.split(":")[-1]

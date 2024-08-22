@@ -1,3 +1,4 @@
+import uuid
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -170,9 +171,9 @@ class BaseCreateView(
 
         # salva e continua editando
         elif "_continue" in form.data:
-            return redirect(
-                reverse(
-                    self.get_context_data()["url_update"], kwargs={"pk": self.object.pk}
+                return redirect(
+                    reverse(
+                        self.get_context_data()["url_update"], kwargs={"pk": self.object.pk if isinstance(self.object.pk, uuid.UUID) else self.object.uuid}
                 )
             )
 
