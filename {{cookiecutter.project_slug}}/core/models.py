@@ -281,6 +281,9 @@ class Base(models.Model):
 class BaseLegado(Base):
     id = models.AutoField(primary_key=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, null=True, blank=True)
+    class Meta:
+        """Configure abstract class"""
+        abstract = True
 """
 =========================================================================
 =========================================================================
